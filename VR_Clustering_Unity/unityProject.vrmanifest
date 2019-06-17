@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.vr_clustering_unity.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\Users\\Skylar\\Documents\\VR_Clustering\\VR_Clustering_Unity\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "VR_Clustering_Unity [Testing]"
+        }
+      }
+    }
+  ]
+}

@@ -63,7 +63,10 @@ public class RoomNetworkManager : MonoBehaviourPunCallbacks
 
 
         }
-
+        if (PhotonNetwork.IsMasterClient)
+        {
+            RoomManager.instance.StartRoomManager();
+        }
     }
 
     /// <summary>

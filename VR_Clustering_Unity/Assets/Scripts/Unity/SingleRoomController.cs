@@ -59,6 +59,7 @@ public class SingleRoomController : MonoBehaviour
 
     void TakeOwnershipOfRoomItems()
     {
+        print("Taking ownership of all room items");
         ButtonToEnter.gameObject.GetComponent<PhotonView>().RequestOwnership();
         ButtonToCalibrate.gameObject.GetComponent<PhotonView>().RequestOwnership();
         ButtonToFinish.transform.parent.gameObject.GetComponent<PhotonView>().RequestOwnership();
@@ -73,12 +74,14 @@ public class SingleRoomController : MonoBehaviour
     }
     void SetToOccupied()
     {
+        print("Set to occupied");
         FrontText.text = "Occupied";
         FrontText.color = Color.red;
         ButtonToEnter.interactable = false;
     }
     void SetToAvailable()
     {
+        print("Set to available");
         ButtonToEnter.interactable = true;
         ButtonToCalibrate.gameObject.SetActive(true);
         FrontText.text = "Available";
@@ -90,6 +93,7 @@ public class SingleRoomController : MonoBehaviour
 
     public void FinishButtonClicked()
     {
+        print("Finish clicked");
         GameObject player = GameObject.FindWithTag("Player");
         player.transform.position = Vector3.zero;
         if (roomNumber == 1)
@@ -105,6 +109,7 @@ public class SingleRoomController : MonoBehaviour
             StudySceneManager.instance.OnRoom3Complete();
         }
 
+        print("Calling RPC for NetworkRoomExited");
         PhotonView photonView = PhotonView.Get(this);
         photonView.RPC("NetworkRoomExited", RpcTarget.All);
         currentState = STATE.WAITING;
@@ -112,6 +117,7 @@ public class SingleRoomController : MonoBehaviour
 
     public void CalibrateButtonClicked()
     {
+        print("Calibrate button clicked");
         GameObject player = GameObject.FindWithTag("Player");
         float height = player.transform.GetChild(2).position.y * 0.8f;
         float z = player.transform.GetChild(2).position.z + 0.5f;
@@ -129,14 +135,16 @@ public class SingleRoomController : MonoBehaviour
 
     public void EnterButtonClicked()
     {
+        print("Enter button clicked");
         if(currentState == STATE.WAITING)
         {
+            print("Entering room");
             GameObject player = GameObject.FindWithTag("Player");
             player.transform.position += TeleportSpot.transform.position - player.transform.position;
             currentState = STATE.ENTERED;
             InstructionText.SetActive(true);
             ButtonToCalibrate.gameObject.SetActive(true);
-
+            print("Calling RPC for NetworkRoomEntered");
             PhotonView photonView = PhotonView.Get(this);
             photonView.RPC("NetworkRoomEntered", RpcTarget.All);
         }
@@ -144,6 +152,7 @@ public class SingleRoomController : MonoBehaviour
     
     void DisableGrabInteractionOnObjects()
     {
+        print("Disabling grab mechanic on all room game objects");
         for(int i = 0; i < PlacementBoard.transform.childCount; i++)
         {
             PlacementBoard.transform.GetChild(i).GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = false;
@@ -151,6 +160,7 @@ public class SingleRoomController : MonoBehaviour
     }
     void EnableGrabInteractionOnObjects()
     {
+        print("Enable grab mechanic on all room game objects");
         for (int i = 0; i < PlacementBoard.transform.childCount; i++)
         {
             PlacementBoard.transform.GetChild(i).GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
@@ -159,11 +169,13 @@ public class SingleRoomController : MonoBehaviour
     [PunRPC]
     void NetworkRoomEntered()
     {
+        print("NetworkRoomEntered called");
         SetToOccupied();
     }
     [PunRPC]
     void NetworkRoomExited()
     {
+        print("NetworkRoomExited called");
         SetToAvailable();
     }
 }

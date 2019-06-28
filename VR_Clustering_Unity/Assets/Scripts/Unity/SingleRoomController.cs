@@ -14,7 +14,7 @@ public class SingleRoomController : MonoBehaviour
     public Button ButtonToEnter, ButtonToCalibrate, ButtonToFinish;
     public TextMeshPro FrontText;
     public GameObject InstructionText;
-    public GameObject PlacementBoard;
+    public GameObject PlacementBoard, PlacementBoardFill;
     public GameObject TeleportSpot;
 
     float startDisplayTime;
@@ -35,6 +35,7 @@ public class SingleRoomController : MonoBehaviour
             if(Time.time > startDisplayTime + displayLength)
             {
                 PlacementBoard.SetActive(false);
+                PlacementBoardFill.SetActive(false);
                 currentState = STATE.PAUSE;
                 startPauseTime = Time.time;
             }
@@ -44,13 +45,14 @@ public class SingleRoomController : MonoBehaviour
             if(Time.time > startPauseTime + pauseLength)
             {
                 PlacementBoard.SetActive(true);
+                PlacementBoardFill.SetActive(true);
                 for(int i = 0; i < PlacementBoard.transform.childCount; i++)
                 {                    
                     PlacementBoard.transform.GetChild(i).transform.localPosition = new Vector3(
                         Mathf.Lerp(-0.5f, 0.5f, (float)(i+1) / (float)(PlacementBoard.transform.childCount+1)),
                         -0.5f, PlacementBoard.transform.GetChild(i).transform.localPosition.z);
                 }
-                ButtonToFinish.gameObject.SetActive(true);
+                ButtonToFinish.transform.parent.gameObject.SetActive(true);
                 EnableGrabInteractionOnObjects();
                 currentState = STATE.PLACEMENT;
             }
@@ -65,6 +67,7 @@ public class SingleRoomController : MonoBehaviour
         ButtonToFinish.transform.parent.gameObject.GetComponent<PhotonView>().RequestOwnership();
         ButtonToFinish.gameObject.GetComponent<PhotonView>().RequestOwnership();
         PlacementBoard.GetComponent<PhotonView>().RequestOwnership();
+        PlacementBoardFill.GetComponent<PhotonView>().RequestOwnership();
         FrontText.GetComponent<PhotonView>().RequestOwnership();
         InstructionText.GetComponent<PhotonView>().RequestOwnership();
         for (int i = 0; i < PlacementBoard.transform.childCount; i++)
@@ -87,7 +90,7 @@ public class SingleRoomController : MonoBehaviour
         FrontText.text = "Available";
         FrontText.color = Color.green;
         InstructionText.SetActive(true);
-        ButtonToFinish.gameObject.SetActive(false);
+        ButtonToFinish.transform.parent.gameObject.SetActive(false);
     }
 
     public void FinishButtonClicked()
@@ -119,10 +122,12 @@ public class SingleRoomController : MonoBehaviour
         print("Calibrate button clicked");
         GameObject player = GameObject.FindWithTag("Player");
         float height = player.transform.GetChild(2).position.y * 0.8f;
-        float z = player.transform.GetChild(2).position.z + 0.5f;
+        float z = player.transform.GetChild(2).position.z + 0.6f;
         float x = player.transform.GetChild(2).position.x;
         PlacementBoard.transform.position = new Vector3(x, height, z);
         PlacementBoard.SetActive(true);
+        PlacementBoardFill.transform.position = new Vector3(x, height, z);
+        PlacementBoardFill.SetActive(true);
         startDisplayTime = Time.time;
         displayLength = PlacementBoard.transform.childCount;
         ButtonToFinish.transform.parent.position = PlacementBoard.transform.position + new Vector3(0, -0.4f, 0);
@@ -143,6 +148,7 @@ public class SingleRoomController : MonoBehaviour
             currentState = STATE.ENTERED;
             InstructionText.SetActive(true);
             PlacementBoard.SetActive(false);
+            PlacementBoardFill.SetActive(false);
             ButtonToCalibrate.gameObject.SetActive(true);
             print("Calling RPC for NetworkRoomEntered");
             PhotonView photonView = PhotonView.Get(this);

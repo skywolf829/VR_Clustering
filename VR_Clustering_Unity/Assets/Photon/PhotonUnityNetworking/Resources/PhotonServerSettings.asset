@@ -34,5 +34,6 @@ MonoBehaviour:
   - RespawnSpaceship
   - NetworkRoomEntered
   - NetworkRoomExited
+  - AssignParent
   DisableAutoOpenWizard: 1
   ShowSettings: 0

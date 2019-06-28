@@ -3435,7 +3435,7 @@ GameObject:
   - component: {fileID: 300564345}
   - component: {fileID: 300564344}
   m_Layer: 0
-  m_Name: InstructionText
+  m_Name: InstructionText2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5036,7 +5036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 412095067}
   m_Layer: 0
-  m_Name: GamePlayArea
+  m_Name: GamePlayArea2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5937,7 +5937,7 @@ GameObject:
   - component: {fileID: 532629094}
   - component: {fileID: 532629097}
   m_Layer: 0
-  m_Name: board
+  m_Name: board1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7477,7 +7477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 722508343}
   m_Layer: 0
-  m_Name: TP spot
+  m_Name: TP spot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10501,7 +10501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1071766458}
   m_Layer: 0
-  m_Name: TP spot
+  m_Name: TP spot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14642,7 +14642,7 @@ GameObject:
   - component: {fileID: 1441252614}
   - component: {fileID: 1441252613}
   m_Layer: 0
-  m_Name: board
+  m_Name: board2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16010,7 +16010,7 @@ GameObject:
   - component: {fileID: 1572834629}
   - component: {fileID: 1572834628}
   m_Layer: 0
-  m_Name: board
+  m_Name: board3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16457,7 +16457,7 @@ GameObject:
   - component: {fileID: 1622853287}
   - component: {fileID: 1622853291}
   m_Layer: 0
-  m_Name: InstructionText
+  m_Name: InstructionText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18420,7 +18420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1776014940}
   m_Layer: 0
-  m_Name: GamePlayArea
+  m_Name: GamePlayArea1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19040,7 +19040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1856601603}
   m_Layer: 0
-  m_Name: GamePlayArea
+  m_Name: GamePlayArea3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20518,7 +20518,7 @@ GameObject:
   - component: {fileID: 1987882301}
   - component: {fileID: 1987882300}
   m_Layer: 0
-  m_Name: InstructionText
+  m_Name: InstructionText3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21002,7 +21002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2019328039}
   m_Layer: 0
-  m_Name: TP spot
+  m_Name: TP spot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

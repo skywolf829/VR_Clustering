@@ -87,7 +87,6 @@ public class SingleRoomController : MonoBehaviour
         FrontText.text = "Available";
         FrontText.color = Color.green;
         InstructionText.SetActive(true);
-        PlacementBoard.SetActive(false);
         ButtonToFinish.gameObject.SetActive(false);
     }
 
@@ -143,6 +142,7 @@ public class SingleRoomController : MonoBehaviour
             player.transform.position += TeleportSpot.transform.position - player.transform.position;
             currentState = STATE.ENTERED;
             InstructionText.SetActive(true);
+            PlacementBoard.SetActive(false);
             ButtonToCalibrate.gameObject.SetActive(true);
             print("Calling RPC for NetworkRoomEntered");
             PhotonView photonView = PhotonView.Get(this);

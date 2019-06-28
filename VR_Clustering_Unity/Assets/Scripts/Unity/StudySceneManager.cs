@@ -15,6 +15,8 @@ public class StudySceneManager : MonoBehaviour
 
     List<Vector2> currentRoom1Configuration, currentRoom2Configuration, currentRoom3Configuration;
 
+    bool started = false;
+
     private void Awake()
     {
         if(StudySceneManager.instance == null)
@@ -26,6 +28,7 @@ public class StudySceneManager : MonoBehaviour
             Destroy(this);
         }
     }
+    
     public void StartRoomManager()
     {
         if (!PhotonNetwork.IsMasterClient) return;
@@ -33,36 +36,40 @@ public class StudySceneManager : MonoBehaviour
         for(int i = 0; i < currentRoom1Configuration.Count; i++)
         {
             GameObject gamePiece = PhotonNetwork.Instantiate(gamePrefabs[i].name, Vector3.zero, Quaternion.identity);
-            gamePiece.transform.SetParent(Room1Board.transform);
-            gamePiece.transform.localPosition = Vector3.zero;
+            PhotonView photonView = gamePiece.GetComponent<PhotonView>();
+            photonView.RPC("AssignParent", RpcTarget.All, Room1Board.name);
             gamePiece.transform.localPosition = new Vector3(currentRoom1Configuration[i].x, currentRoom1Configuration[i].y, 0);
         }
-        //Room1Board.SetActive(false);
        
         currentRoom2Configuration = Generate2C2();
         for (int i = 0; i < currentRoom2Configuration.Count; i++)
         {
             GameObject gamePiece = PhotonNetwork.Instantiate(gamePrefabs[i].name, Vector3.zero, Quaternion.identity);
-            gamePiece.transform.SetParent(Room2Board.transform);
-            gamePiece.transform.localPosition = Vector3.zero;
+            PhotonView photonView = gamePiece.GetComponent<PhotonView>();
+            photonView.RPC("AssignParent", RpcTarget.All, Room2Board.name);
             gamePiece.transform.localPosition = new Vector3(currentRoom2Configuration[i].x, currentRoom2Configuration[i].y, 0);
         }
-        //Room2Board.SetActive(false);
 
         currentRoom3Configuration = Generate2C2();
         for (int i = 0; i < currentRoom3Configuration.Count; i++)
         {
             GameObject gamePiece = PhotonNetwork.Instantiate(gamePrefabs[i].name, Vector3.zero, Quaternion.identity);
-            gamePiece.transform.SetParent(Room3Board.transform);
-            gamePiece.transform.localPosition = Vector3.zero;
+            PhotonView photonView = gamePiece.GetComponent<PhotonView>();
+            photonView.RPC("AssignParent", RpcTarget.All, Room3Board.name);
             gamePiece.transform.localPosition = new Vector3(currentRoom3Configuration[i].x, currentRoom3Configuration[i].y, 0);
         }
-        //Room3Board.SetActive(false);
-
 
         LogRoom1Config();
         LogRoom2Config();
         LogRoom3Config();
+    }
+    private void Update()
+    {
+        if (PhotonNetwork.IsMasterClient && Input.GetKeyDown(KeyCode.Space) && !started)
+        {
+            StudySceneManager.instance.StartRoomManager();
+            started = true;
+        }
     }
     void LogRoom1Config()
     {

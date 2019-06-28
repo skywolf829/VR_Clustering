@@ -36,7 +36,7 @@ public class RoomNetworkManager : MonoBehaviourPunCallbacks
         // in case we started this demo with the wrong scene being active, simply load the menu scene
         if (!PhotonNetwork.IsConnected)
         {
-            SceneManager.LoadScene(startScene);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(startScene);
 
             return;
         }
@@ -65,7 +65,7 @@ public class RoomNetworkManager : MonoBehaviourPunCallbacks
         }
         if (PhotonNetwork.IsMasterClient)
         {
-            RoomManager.instance.StartRoomManager();
+            StudySceneManager.instance.StartRoomManager();
         }
     }
 
@@ -122,7 +122,7 @@ public class RoomNetworkManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnLeftRoom()
     {
-        SceneManager.LoadScene(startScene);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(startScene);
     }
 
     #endregion
@@ -149,8 +149,8 @@ public class RoomNetworkManager : MonoBehaviourPunCallbacks
         {
             Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
         }
-        
-        PhotonNetwork.LoadLevel(SceneManager.GetActiveScene().name);
+
+        PhotonNetwork.LoadLevel(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
     #endregion

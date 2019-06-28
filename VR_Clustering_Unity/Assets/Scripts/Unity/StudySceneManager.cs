@@ -5,9 +5,9 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.IO;
 
-public class RoomManager : MonoBehaviour
+public class StudySceneManager : MonoBehaviour
 {
-    public static RoomManager instance;
+    public static StudySceneManager instance;
 
     public GameObject Room1Board, Room2Board, Room3Board;
     public List<GameObject> gamePrefabs = new List<GameObject>();
@@ -17,7 +17,7 @@ public class RoomManager : MonoBehaviour
 
     private void Awake()
     {
-        if(RoomManager.instance == null)
+        if(StudySceneManager.instance == null)
         {
             instance = this;
         }
@@ -28,6 +28,7 @@ public class RoomManager : MonoBehaviour
     }
     public void StartRoomManager()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
         currentRoom1Configuration = Generate2C2();
         for(int i = 0; i < currentRoom1Configuration.Count; i++)
         {
@@ -65,6 +66,7 @@ public class RoomManager : MonoBehaviour
     }
     void LogRoom1Config()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
         string toWrite = "[";
         for (int i = 0; i < currentRoom1Configuration.Count; i++)
         {
@@ -79,6 +81,7 @@ public class RoomManager : MonoBehaviour
     }
     void LogRoom2Config()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
         string toWrite = "[";
         for (int i = 0; i < currentRoom2Configuration.Count; i++)
         {
@@ -93,6 +96,7 @@ public class RoomManager : MonoBehaviour
     }
     void LogRoom3Config()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
         string toWrite = "[";
         for (int i = 0; i < currentRoom3Configuration.Count; i++)
         {
@@ -107,6 +111,7 @@ public class RoomManager : MonoBehaviour
     }
     void OnApplicationQuit()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
         if (File.Exists("Assets/Resources/Room1Configs.txt"))
         {
             File.AppendAllText("Assets/Resources/Room1Configs.txt", "END" + System.Environment.NewLine);
@@ -448,7 +453,8 @@ public class RoomManager : MonoBehaviour
 
     public void OnRoom1Complete()
     {
-        for(int i = 0; i < Room1Board.transform.childCount; i++)
+        if (!PhotonNetwork.IsMasterClient) return;
+        for (int i = 0; i < Room1Board.transform.childCount; i++)
         {
             currentRoom1Configuration[i] = new Vector2(Room1Board.transform.GetChild(i).localPosition.x, Room1Board.transform.GetChild(i).localPosition.y);
         }
@@ -456,6 +462,7 @@ public class RoomManager : MonoBehaviour
     }
     public void OnRoom2Complete()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
         for (int i = 0; i < Room2Board.transform.childCount; i++)
         {
             currentRoom2Configuration[i] = new Vector2(Room2Board.transform.GetChild(i).localPosition.x, Room2Board.transform.GetChild(i).localPosition.y);
@@ -464,6 +471,7 @@ public class RoomManager : MonoBehaviour
     }
     public void OnRoom3Complete()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
         for (int i = 0; i < Room3Board.transform.childCount; i++)
         {
             currentRoom3Configuration[i] = new Vector2(Room3Board.transform.GetChild(i).localPosition.x, Room3Board.transform.GetChild(i).localPosition.y);

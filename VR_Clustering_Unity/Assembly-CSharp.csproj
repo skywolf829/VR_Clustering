@@ -176,9 +176,9 @@
     <Compile Include="Assets\Scripts\Unity\LoadNetworkedScene.cs" />
     <Compile Include="Assets\Scripts\Unity\MovementRestrictionScript.cs" />
     <Compile Include="Assets\Scripts\Unity\PlayerManager.cs" />
-    <Compile Include="Assets\Scripts\Unity\RoomManager.cs" />
     <Compile Include="Assets\Scripts\Unity\RoomNetworkManager.cs" />
     <Compile Include="Assets\Scripts\Unity\SingleRoomController.cs" />
+    <Compile Include="Assets\Scripts\Unity\StudySceneManager.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
@@ -626,6 +626,7 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\SteamVR\Resources\SteamVR_Fade.shader" />
+    <None Include="Assets\Resources\Room3Configs.txt" />
     <None Include="Assets\Photon\PhotonUnityNetworking\link.xml" />
     <None Include="Assets\SteamVR\Resources\SteamVR_ClearAll.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />
@@ -638,6 +639,7 @@
     <None Include="Assets\SteamVR\InteractionSystem\Teleport\Shaders\Highlight.shader" />
     <None Include="Assets\VRTK\Source\Scripts\Internal\Shaders\VRTK_OutlineBasic.shader" />
     <None Include="Assets\VRTK\Source\Scripts\Internal\Shaders\AdaptiveQualityDebugVisualization.shader" />
+    <None Include="Assets\Resources\Room2Configs.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Photon\PhotonLibs\changes-library.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -663,6 +665,7 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\SteamVR\Resources\SteamVR_ColorOut.shader" />
     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
+    <None Include="Assets\Resources\Room1Configs.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
@@ -709,6 +712,12 @@
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
       <HintPath>C:/Users/Skylar/Documents/VR_Clustering/VR_Clustering_Unity/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+      <HintPath>C:/Users/Skylar/Documents/VR_Clustering/VR_Clustering_Unity/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.AddOns.Editor">
+      <HintPath>C:/Users/Skylar/Documents/VR_Clustering/VR_Clustering_Unity/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.7f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

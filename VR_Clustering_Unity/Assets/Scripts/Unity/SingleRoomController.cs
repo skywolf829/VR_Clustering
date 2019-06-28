@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class SingleRoomController : MonoBehaviour
 {
@@ -44,7 +45,7 @@ public class SingleRoomController : MonoBehaviour
             {
                 PlacementBoard.SetActive(true);
                 for(int i = 0; i < PlacementBoard.transform.childCount; i++)
-                {
+                {                    
                     PlacementBoard.transform.GetChild(i).transform.localPosition = new Vector3(
                         Mathf.Lerp(-0.5f, 0.5f, (float)(i+1) / (float)(PlacementBoard.transform.childCount+1)),
                         -0.5f, PlacementBoard.transform.GetChild(i).transform.localPosition.z);
@@ -56,6 +57,20 @@ public class SingleRoomController : MonoBehaviour
         }
     }
 
+    void TakeOwnershipOfRoomItems()
+    {
+        ButtonToEnter.gameObject.GetComponent<PhotonView>().RequestOwnership();
+        ButtonToCalibrate.gameObject.GetComponent<PhotonView>().RequestOwnership();
+        ButtonToFinish.transform.parent.gameObject.GetComponent<PhotonView>().RequestOwnership();
+        ButtonToFinish.gameObject.GetComponent<PhotonView>().RequestOwnership();
+        PlacementBoard.GetComponent<PhotonView>().RequestOwnership();
+        FrontText.GetComponent<PhotonView>().RequestOwnership();
+        InstructionText.GetComponent<PhotonView>().RequestOwnership();
+        for (int i = 0; i < PlacementBoard.transform.childCount; i++)
+        {
+            PlacementBoard.transform.GetChild(i).GetComponent<PhotonView>().RequestOwnership();
+        }
+    }
     void SetToOccupied()
     {
         FrontText.text = "Occupied";
@@ -79,17 +94,19 @@ public class SingleRoomController : MonoBehaviour
         player.transform.position = Vector3.zero;
         if (roomNumber == 1)
         {
-            RoomManager.instance.OnRoom1Complete();
+            StudySceneManager.instance.OnRoom1Complete();
         }
         if (roomNumber == 2)
         {
-            RoomManager.instance.OnRoom2Complete();
+            StudySceneManager.instance.OnRoom2Complete();
         }
         if (roomNumber == 3)
         {
-            RoomManager.instance.OnRoom3Complete();
+            StudySceneManager.instance.OnRoom3Complete();
         }
-        SetToAvailable();
+
+        PhotonView photonView = PhotonView.Get(this);
+        photonView.RPC("NetworkRoomExited", RpcTarget.All);
         currentState = STATE.WAITING;
     }
 
@@ -119,7 +136,9 @@ public class SingleRoomController : MonoBehaviour
             currentState = STATE.ENTERED;
             InstructionText.SetActive(true);
             ButtonToCalibrate.gameObject.SetActive(true);
-            SetToOccupied();
+
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("NetworkRoomEntered", RpcTarget.All);
         }
     }
     
@@ -136,5 +155,15 @@ public class SingleRoomController : MonoBehaviour
         {
             PlacementBoard.transform.GetChild(i).GetComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
         }
+    }
+    [PunRPC]
+    void NetworkRoomEntered()
+    {
+        SetToOccupied();
+    }
+    [PunRPC]
+    void NetworkRoomExited()
+    {
+        SetToAvailable();
     }
 }

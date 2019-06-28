@@ -8974,7 +8974,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909020458}
   m_LocalRotation: {x: -0, y: 0.04884118, z: -0, w: 0.99880654}
-  m_LocalPosition: {x: 5.185, y: 0, z: 1.898}
+  m_LocalPosition: {x: 5.26, y: 0, z: 0.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1624859822}
@@ -13191,8 +13191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Room1Board: {fileID: 532629092}
-  Room2Board: {fileID: 0}
-  Room3Board: {fileID: 0}
+  Room2Board: {fileID: 1441252612}
+  Room3Board: {fileID: 1572834627}
   gamePrefabs:
   - {fileID: 4947524281724634490, guid: 8fdbe64f7e60fca46ba369b98613b8f8, type: 3}
   - {fileID: 2723726646758491181, guid: 87cfcb02896b76c479f72d40b256402f, type: 3}
@@ -13441,7 +13441,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1329175305}
   m_LocalRotation: {x: -0, y: 0.04884118, z: -0, w: 0.99880654}
-  m_LocalPosition: {x: -0.244, y: 0, z: 1.105}
+  m_LocalPosition: {x: 0.08, y: 0, z: 0.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 924819138}
